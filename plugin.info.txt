@@ -1,0 +1,7 @@
+base   door43obs
+author Phil Hopper
+email  phillip_hopper@wycliffeassociates.org
+date   2014-12-05
+name   door43obs plugin
+desc   Open Bible Stories support
+url    https://github.com/phillip-hopper/dokuwiki-plugin-obs
