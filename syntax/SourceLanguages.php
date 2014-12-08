@@ -14,9 +14,10 @@ $root = dirname(dirname(__FILE__));
 require_once $root . '/private/obs_language.php';
 
 /**
- * Class syntax_plugin_door43obs_SourceLanguages
+ * Class to retrieve source languages and display them in a select element
  */
 class syntax_plugin_door43obs_SourceLanguages extends DokuWiki_Syntax_Plugin {
+
     /**
      * @return string Syntax mode type
      */
@@ -44,12 +45,8 @@ class syntax_plugin_door43obs_SourceLanguages extends DokuWiki_Syntax_Plugin {
      * @param string $mode Parser mode
      */
     public function connectTo($mode) {
-        $this->Lexer->addSpecialPattern('<obssourcelang>', $mode, 'plugin_door43obs_SourceLanguages');
+        $this->Lexer->addSpecialPattern('\[obssourcelang\]', $mode, 'plugin_door43obs_SourceLanguages');
     }
-
-//    public function postConnect() {
-//        $this->Lexer->addExitPattern('</obssourcelang>','plugin_door43obs_SourceLanguages');
-//    }
 
     /**
      * Handle matches of the door43obs syntax
@@ -63,24 +60,30 @@ class syntax_plugin_door43obs_SourceLanguages extends DokuWiki_Syntax_Plugin {
     public function handle($match, $state, $pos, Doku_Handler &$handler) {
 
         $data = array();
+
+        if ($state != DOKU_LEXER_SPECIAL)
+            return $data;
+
         $http = new DokuHTTPClient();
 
         // Get the list of source languages that are level 3.
-
         $url      = 'https://api.unfoldingword.org/obs/txt/1/obs-catalog.json';
         $response = $http->get($url);
         if($response !== false) {
 
             // Convert to ObsLanguage.
-            // "date_modified": "20141205",
-            // "direction": "ltr",
-            // "language": "en",
-            // "status": {
-            //             ...
-            //             "checking_level": "3",
-            //             ...
-            //           },
-            // "string": "English"
+            // Example of data received:
+            // {
+            //   "date_modified": "20141205",
+            //   "direction": "ltr",
+            //   "language": "en",
+            //   "status": {
+            //              ...
+            //              "checking_level": "3",
+            //              ...
+            //             },
+            //   "string": "English"
+            // }
             $languages = json_decode($response);
             foreach($languages as $lang) {
 
@@ -89,6 +92,8 @@ class syntax_plugin_door43obs_SourceLanguages extends DokuWiki_Syntax_Plugin {
                 }
             }
         }
+
+        ObsLanguage::sort($data);
 
         return $data;
     }
