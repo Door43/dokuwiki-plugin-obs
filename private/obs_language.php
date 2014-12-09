@@ -39,21 +39,25 @@ class ObsLanguage {
      */
     private static function compare($obj1, $obj2) {
 
-        // do not try to sort objects that are not ObsLanguage
-        if ((get_class($obj1) != 'ObsLanguage') || (get_class($obj2) != 'ObsLanguage'))
-            return 0;
-
-        // it is the responsibility of the calling method to make sure self::$collator is initialized
-        return self::$collator->compare($obj1->name, $obj2->name);
+// because we don't yet have intl support, don't try to sort
+//
+//        // do not try to sort objects that are not ObsLanguage
+//        if ((get_class($obj1) != 'ObsLanguage') || (get_class($obj2) != 'ObsLanguage'))
+//            return 0;
+//
+//        // it is the responsibility of the calling method to make sure self::$collator is initialized
+//        return self::$collator->compare($obj1->name, $obj2->name);
     }
 
     public static function sort(&$array) {
 
-        if (empty(self::$collator))
-            self::$collator = new Collator('root'); // use UCA rules
-
-        usort($array, function($obj1, $obj2) {
-                return self::compare($obj1, $obj2);
-            });
+// because we don't yet have intl support, don't try to sort
+//
+//        if (empty(self::$collator))
+//            self::$collator = new Collator('root'); // use UCA rules
+//
+//        usort($array, function($obj1, $obj2) {
+//                return self::compare($obj1, $obj2);
+//            });
     }
 }

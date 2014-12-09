@@ -58,36 +58,7 @@ class syntax_plugin_door43obs_DestinationLanguages extends DokuWiki_Syntax_Plugi
      * @return array Data for the renderer
      */
     public function handle($match, $state, $pos, Doku_Handler &$handler) {
-
-        $data = array();
-
-        if ($state != DOKU_LEXER_SPECIAL)
-            return $data;
-
-        $http = new DokuHTTPClient();
-
-        // Get the list of source languages that are level 3.
-        $url      = 'https://api.unfoldingword.org/obs/txt/1/langnames.json';
-        $response = $http->get($url);
-        if ($response !== false) {
-
-            // Convert to ObsLanguage.
-            // Example of data received:
-            // {
-            //  "cc": ["GB"],
-            //  "lc": "en",
-            //  "ln": "English",
-            //  "lr": "Europe"
-            // }
-            $languages = json_decode($response);
-            foreach($languages as $lang) {
-                $data[] = new ObsLanguage($lang->lc, $lang->ln);
-            }
-        }
-
-        ObsLanguage::sort($data);
-
-        return $data;
+        return array();
     }
 
     /**
@@ -102,16 +73,10 @@ class syntax_plugin_door43obs_DestinationLanguages extends DokuWiki_Syntax_Plugi
 
         if($mode != 'xhtml') return false;
 
-        $elem = "<label for=\"selectObsDestination\">{$this->getLang('destinationLabel')}</label>&nbsp;<select id=\"selectObsDestination\">\n";
+        $root = dirname(dirname(__FILE__));
 
-        $elem .= "<option>{$this->getLang('selectOne')}</option>\n";
-
-        /* @var ObsLanguage $lang */
-        foreach($data as $lang) {
-            $elem .= "<option value=\"{$lang->isoCode}\">{$lang->name}</option>\n";
-        }
-
-        $elem .= "</select>\n";
+        $elem = file_get_contents($root . '/private/destination_language.html');
+        $elem = str_replace('@destinationLabel@', $this->getLang('destinationLabel'), $elem);
 
         $renderer->doc .= $elem;
 
