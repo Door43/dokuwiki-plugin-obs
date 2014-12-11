@@ -1,13 +1,13 @@
-<label for="selectObsDestination">@destinationLabel@</label>&nbsp;<input type="text" id="selectObsDestination">
+<label for="selectObsDestination">@LabelText@</label>&nbsp;<input type="text" id="selectObsDestination">
 <script type="text/javascript">
-    jQuery(function() {
+    jQuery(function($) {
 
         var languages = [];
 
         setTimeout(function() {
             var request = {type: 'GET', url: 'http://door43.org:9096/?q='};
 
-            jQuery.ajax(request).done(function(data) {
+            $.ajax(request).done(function(data) {
 
                 if (!data.results) return;
 
@@ -17,10 +17,10 @@
                     languages.push(langData['ln'] + ' (' + langData['lc'] + ')');
                 }
 
-                jQuery('#selectObsDestination').autocomplete({
+                $('#selectObsDestination').autocomplete({
                     source: languages
                 });
             });
         }, 100);
-    });
+    }(jQuery));
 </script>

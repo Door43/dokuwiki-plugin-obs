@@ -1,0 +1,29 @@
+<button id="obsCreateNowButton">@LabelText@</button>
+<script type="text/javascript">
+    jQuery(function($) {
+
+        $('#obsCreateNowButton').on('click', function() {
+
+            var src = $('#selectObsSource').val();
+            var dest = $('#selectObsDestination').val();
+
+            var url = DOKU_BASE + 'lib/exe/ajax.php';
+
+            var dataValues = {
+                call: 'create_obs_now',
+                sourceLang: src,
+                destinationLang: dest
+            };
+
+            var ajaxSettings = {
+                type: 'POST',
+                url: url,
+                data: dataValues
+            };
+
+            $.ajax(ajaxSettings).done(function (data) {
+                alert(data);
+            });
+        })
+    }(jQuery));
+</script>

@@ -12,3 +12,4 @@
 $lang['sourceLabel'] = 'Source Language';
 $lang['destinationLabel'] = 'Destination Language';
 $lang['selectOne'] = 'Select One';
+$lang['createButtonText'] = 'Create OBS Now';

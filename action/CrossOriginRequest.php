@@ -1,15 +1,19 @@
 <?php
 /**
- * DokuWiki Plugin door43obs (Action Component)
+ * Name: CrossOriginRequest.php
+ * Description:
  *
- * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
- * @author  Phil Hopper <phillip_hopper@wycliffeassociates.org>
+ * Created by PhpStorm.
+ *
+ * Author: Phil Hopper
+ * Date:   12/11/14
+ * Time:   8:44 AM
  */
 
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
 
-class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
+class action_plugin_door43obs_CrossOriginRequest extends DokuWiki_Action_Plugin {
 
     /**
      * Registers a callback function for a given event
@@ -32,7 +36,7 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
 
     public function handle_ajax_call_unknown(Doku_Event &$event, $param) {
 
-        if ($event->data !== 'create_obs_now') return;
+        if ($event->data !== 'obs_cross_origin_json_request') return;
 
         //no other ajax call handlers needed
         $event->stopPropagation();
@@ -40,14 +44,16 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
 
         global $INPUT;
 
-        header('Content-Type: text/plain');
-        echo($INPUT->str('sourceLang') . "\n");
-        echo($INPUT->str('destinationLang') . "\n");
+        $contentType = $INPUT->str('contentType');
+        if (empty($contentType)) $contentType = 'application/json';
+
+        header('Content-Type: ' . $contentType);
+
+        $http = new DokuHTTPClient();
+
+        // Get the list of source languages that are level 3.
+        $url = $INPUT->str('requestUrl');
+        echo $http->get($url);
     }
 
 }
-
-//$old_path = getcwd();
-//chdir('/var/www/vhosts/door43.org/tools/obs/dokuwiki/');
-//$output = shell_exec('./obs-creator.sh -l isoCode --src isoCode [--notes]');
-//chdir($old_path);
