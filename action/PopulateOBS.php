@@ -135,12 +135,16 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
             chmod($fileName, 0777);
         }
 
+        echo 'DEBUG: git 1<br>';
         // initialize a github repo for this language
         if (strpos($namespaceDir, '/var/www/vhosts/door43.org/') !== false) {
-
+            echo 'DEBUG: git 2<br>';
             $gitInit = '/var/www/vhosts/door43.org/tools/obs/dokuwiki/d43-git-init.py';
             if (is_file($gitInit)) {
-                shell_exec($gitInit . ' ' . $langIso);
+                echo 'DEBUG: git 3<br>';
+                $code = shell_exec($gitInit . ' ' . $langIso);
+                echo "DEBUG: git code = {$code}<br>";
+                echo 'DEBUG: git 4<br>';
             }
         }
 
