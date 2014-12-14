@@ -1,4 +1,5 @@
 <button id="obsCreateNowButton">@LabelText@</button>
+<p id="obsCreateNowMessage">&nbsp;</p>
 <script type="text/javascript">
     jQuery(function($) {
 
@@ -6,6 +7,19 @@
 
             var src = $('#selectObsSource').val();
             var dest = $('#selectObsDestination').val();
+
+            if (dest) {
+
+                // find the iso code in the text
+                var found = dest.match(/\([^\(\)]+\)$/);
+                if (found && found.length === 1) {
+                    destIso = found[0].replace(/\(|\)/g, '');
+                }
+            }
+
+            // check data before submitting
+            if (!src) return;
+            if (!dest) return;
 
             var url = DOKU_BASE + 'lib/exe/ajax.php';
 
@@ -22,7 +36,7 @@
             };
 
             $.ajax(ajaxSettings).done(function (data) {
-                alert(data);
+                $('#obsCreateNowMessage').html(data);
             });
         })
     }(jQuery));

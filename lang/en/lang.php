@@ -13,3 +13,8 @@ $lang['sourceLabel'] = 'Source Language';
 $lang['destinationLabel'] = 'Destination Language';
 $lang['selectOne'] = 'Select One';
 $lang['createButtonText'] = 'Create OBS Now';
+$lang['obsSourceDirNotFound'] = 'Warning! The OBS source for language code "%1$s" was not found.';
+$lang['obsDestinationDirExists'] = 'Warning! The language code "%1$s" has already been configured for OBS.';
+$lang['obsCreatedSuccess'] = 'Success: OBS for language code "%1$s" was successfully initialized. You can begin translating by <a href="%2$s">clicking here</a>.';
+$lang['obsCreatedNamespace'] = 'Created namespace %1$s.';
+$lang['obsNamespaceNotFound'] = 'The namespace %1$s was not found.';
