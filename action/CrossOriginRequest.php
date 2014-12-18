@@ -1,13 +1,10 @@
 <?php
 /**
  * Name: CrossOriginRequest.php
- * Description:
- *
- * Created by PhpStorm.
+ * Description: A Dokuwiki action plugin to perform cross-origin requests for the browser.
  *
  * Author: Phil Hopper
- * Date:   12/11/14
- * Time:   8:44 AM
+ * Date:   2014-12-10
  */
 
 // must be run within Dokuwiki
@@ -26,14 +23,13 @@ class action_plugin_door43obs_CrossOriginRequest extends DokuWiki_Action_Plugin 
     }
 
     /**
-     * [Custom event handler which performs action]
+     * Retrieves the requested url from another server and sends it back to the caller.
      *
      * @param Doku_Event $event  event object by reference
      * @param mixed      $param  [the parameters passed as fifth argument to register_hook() when this
      *                           handler was registered]
      * @return void
      */
-
     public function handle_ajax_call_unknown(Doku_Event &$event, $param) {
 
         if ($event->data !== 'obs_cross_origin_json_request') return;
@@ -44,6 +40,7 @@ class action_plugin_door43obs_CrossOriginRequest extends DokuWiki_Action_Plugin 
 
         global $INPUT;
 
+        // if no contentType was passed, use application/json as the default
         $contentType = $INPUT->str('contentType');
         if (empty($contentType)) $contentType = 'application/json';
 

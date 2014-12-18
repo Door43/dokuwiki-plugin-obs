@@ -1,8 +1,10 @@
 <?php
 /**
- * Default settings for the door43obs plugin
+ * Name: default.php
+ * Description: Default settings for the door43obs plugin.
  *
- * @author Phil Hopper <phillip_hopper@wycliffeassociates.org>
+ * Author: Phil Hopper
+ * Date:   2014-12-10
  */
 
 //$conf['fixme']    = 'FIXME';

@@ -1,9 +1,11 @@
 <?php
 /**
- * DokuWiki Plugin door43obs (Syntax Component)
+ * Name: DestinationLanguages.php
+ * Description: A Dokuwiki syntax plugin to display a text box that allows the user to look up and select a language. The
+ * list of languages comes from here: http://door43.org:9096/?q=
  *
- * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
- * @author  Phil Hopper <phillip_hopper@wycliffeassociates.org>
+ * Author: Phil Hopper
+ * Date:   2014-12-10
  */
 
 // must be run within Dokuwiki
@@ -13,7 +15,7 @@ $root = dirname(dirname(__FILE__));
 require_once $root . '/private/plugin_base.php';
 
 /**
- * Class to retrieve Destination languages and display them in a select element
+ * Class to retrieve Destination languages and display them in a text box element
  */
 class syntax_plugin_door43obs_DestinationLanguages extends Door43obs_Plugin_Base {
 

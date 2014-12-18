@@ -1,13 +1,10 @@
 <?php
 /**
  * Name: CreateNow.php
- * Description:
- *
- * Created by PhpStorm.
+ * Description: A Dokuwiki syntax plugin to display a button the user can click to initialize OBS in another language.
  *
  * Author: Phil Hopper
- * Date:   12/10/14
- * Time:   8:29 AM
+ * Date:   2014-12-10
  */
 
 // must be run within Dokuwiki
@@ -17,7 +14,7 @@ $root = dirname(dirname(__FILE__));
 require_once $root . '/private/plugin_base.php';
 
 /**
- * Class to retrieve Destination languages and display them in a select element
+ * Class to display a button the user can click to initialize OBS in another language
  */
 class syntax_plugin_door43obs_CreateNow extends Door43obs_Plugin_Base {
 

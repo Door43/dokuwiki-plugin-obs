@@ -1,8 +1,10 @@
 <?php
 /**
- * English language file for door43obs plugin
+ * Name: lang.php
+ * Description: The English language localization file for door43obs plugin.
  *
- * @author Phil Hopper <phillip_hopper@wycliffeassociates.org>
+ * Author: Phil Hopper
+ * Date:   2014-12-10
  */
 
 // menu entry for admin plugins

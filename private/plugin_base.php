@@ -1,13 +1,10 @@
 <?php
 /**
  * Name: plugin_base.php
- * Description:
- *
- * Created by PhpStorm.
+ * Description: A base class for the syntax plugins.
  *
  * Author: Phil Hopper
- * Date:   12/11/14
- * Time:   7:07 AM
+ * Date:   2014-12-10
  */
 
 // must be run within Dokuwiki
@@ -128,6 +125,9 @@ class Door43obs_Plugin_Base extends DokuWiki_Syntax_Plugin {
 
         // Load the template for the button
         $text = file_get_contents($this->root . '/private/' . $this->templateFileName);
+
+        // remove the initial doc comments
+        $text = preg_replace('/^\<!--(.|\n)*--\>(\n)?/', '', $text, 1);
 
         // Set the label text.
         // If the "special" tag was found, use the default text.

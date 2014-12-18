@@ -1,9 +1,11 @@
 <?php
 /**
- * DokuWiki Plugin door43obs (Syntax Component)
+ * Name: SourceLanguages.php
+ * Description: A Dokuwiki syntax plugin to display a dropdown box that allows the user to select a language. The source
+ * languages comes from here: https://api.unfoldingword.org/obs/txt/1/obs-catalog.json
  *
- * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
- * @author  Phil Hopper <phillip_hopper@wycliffeassociates.org>
+ * Author: Phil Hopper
+ * Date:   2014-12-10
  */
 
 // must be run within Dokuwiki

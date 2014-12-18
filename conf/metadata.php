@@ -1,10 +1,11 @@
 <?php
 /**
- * Options for the door43obs plugin
+ * Name: metadata.php
+ * Description: Options for the door43obs plugin.
  *
- * @author Phil Hopper <phillip_hopper@wycliffeassociates.org>
+ * Author: Phil Hopper
+ * Date:   2014-12-10
  */
-
 
 //$meta['fixme'] = array('string');
 

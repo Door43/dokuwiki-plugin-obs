@@ -1,14 +1,12 @@
 <?php
 /**
  * Name: obs_language.php
- * Description:
- *
- * Created by PhpStorm.
+ * Description: Provides support for correctly sorting a list of language names where each name is written it its own
+ * script so it will be readable by those who can write in that language.
  *
  * Author: Phil Hopper
- * Date:   12/5/14
- * Time:   4:54 PM
- */ 
+ * Date:   2014-12-10
+ */
 class ObsLanguage {
 
     /** @var string */

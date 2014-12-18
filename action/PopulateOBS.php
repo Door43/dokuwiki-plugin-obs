@@ -1,9 +1,10 @@
 <?php
 /**
- * DokuWiki Plugin door43obs (Action Component)
+ * Name: PopulateOBS.php
+ * Description: A Dokuwiki action plugin to handle the  button click.
  *
- * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
- * @author  Phil Hopper <phillip_hopper@wycliffeassociates.org>
+ * Author: Phil Hopper
+ * Date:   2014-12-10
  */
 
 // must be run within Dokuwiki

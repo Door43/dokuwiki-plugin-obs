@@ -1,8 +1,10 @@
 <?php
 /**
- * english language file for door43obs plugin
+ * Name: settings.php
+ * Description: The English language settings file for door43obs plugin.
  *
- * @author Phil Hopper <phillip_hopper@wycliffeassociates.org>
+ * Author: Phil Hopper
+ * Date:   2014-12-10
  */
 
 // keys need to match the config setting name

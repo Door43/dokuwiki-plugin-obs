@@ -1,9 +1,10 @@
 <?php
 /**
- * General tests for the door43obs plugin
+ * Name: general.test.php
+ * Description: General tests for the door43obs plugin.
  *
- * @group plugin_door43obs
- * @group plugins
+ * Author: Phil Hopper
+ * Date:   2014-12-10
  */
 class general_plugin_door43obs_test extends DokuWikiTest {
 
