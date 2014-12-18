@@ -82,7 +82,7 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
             if (!empty($files) && (count($files) > 5)) {
 
                 // if there are, report an error
-                echo sprintf($this->get_error_message('obsDestinationDirExists'), $dstIso);
+                echo sprintf($this->get_success_message('obsDestinationDirExists'), "/$dstIso/obs", "$dstIso/obs");
                 return;
             }
         }
@@ -148,7 +148,7 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
     private function copy_obs_files($srcDir, $dstDir, $templateDir, $srcIso, $dstIso) {
 
         if (!is_dir($dstDir))
-            mkdir($dstDir, 0777);
+            mkdir($dstDir, 0755);
 
         // create the 01.txt through 50.txt source files
         $this->create_files_from_json($srcIso, $dstDir);
@@ -162,7 +162,7 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
 
             $outFile = $dstDir . DS . $file;
             copy($srcFile, $outFile);
-            chmod($outFile, 0777);
+            chmod($outFile, 0644);
         }
 
         // copy these files from /templates/obs3/obs
@@ -206,7 +206,7 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
             $text .= "//{$chapter['ref']}//\n\n\n";
 
             file_put_contents($outFile, $text);
-            chmod($outFile, 0777);
+            chmod($outFile, 0644);
         }
 
         // app_words
@@ -218,7 +218,7 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
         }
 
         file_put_contents($outFile, $text);
-        chmod($outFile, 0777);
+        chmod($outFile, 0644);
     }
 
     private function add_frame($imgUrl, $text) {
@@ -239,7 +239,7 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
 
         $text = file_get_contents($srcFile);
         file_put_contents($outFile, str_replace('LANGCODE', $dstIso, $text));
-        chmod($outFile, 0777);
+        chmod($outFile, 0644);
     }
 
     private function update_home_txt($templateDir, $dstNamespaceDir, $dstIso) {
@@ -273,7 +273,7 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
     private function copy_status_txt($templateDir, $adminDir, $dstIso) {
 
         $adminDir .= "/{$dstIso}/obs";
-        if (!is_dir($adminDir)) mkdir($adminDir, 0777);
+        if (!is_dir($adminDir)) mkdir($adminDir, 0755);
 
         $statusFile = $adminDir . DS . 'status.txt';
         $srcFile = $templateDir . DS . 'status.txt';
