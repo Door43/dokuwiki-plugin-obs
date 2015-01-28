@@ -138,4 +138,13 @@ class Door43obs_Plugin_Base extends DokuWiki_Syntax_Plugin {
         // which should be the desired label text.
         return str_replace('@LabelText@', $match, $text);
     }
+
+    protected function translateHtml($html) {
+        return preg_replace_callback('/@(.+)@/',
+            function($matches) {
+                $text = $this->getLang($matches[1]);
+                return (empty($text)) ? $matches[0] : $text;
+            },
+            $html);
+    }
 }
