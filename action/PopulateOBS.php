@@ -183,7 +183,7 @@ class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
 
     private function create_files_from_json($srcIso, $dstDir) {
 
-        $src = file_get_contents("https://api.unfoldingword.org/obs/txt/1/en/obs-{$srcIso}.json");
+        $src = file_get_contents("https://api.unfoldingword.org/obs/txt/1/{$srcIso}/obs-{$srcIso}.json");
         $srcClass = json_decode($src, true);
 
         // chapters
