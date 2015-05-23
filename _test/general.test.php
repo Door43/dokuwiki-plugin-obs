@@ -9,7 +9,7 @@
 class general_plugin_door43obs_test extends DokuWikiTest {
 
     /**
-     * Simple test to make sure the plugin.info.txt is in correct format
+     * Simple test to make sure the plugin.info.txt is in the correct format
      */
     public function test_plugininfo() {
         $file = __DIR__.'/../plugin.info.txt';
