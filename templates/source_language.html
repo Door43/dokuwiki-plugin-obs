@@ -7,7 +7,7 @@
 * Author: Phil Hopper
 * Date:   2014-12-10
 -->
-<label for="selectObsSource">@LabelText@</label>&nbsp;<select id="selectObsSource">
+<label for="selectObsSource">@sourceLabel@</label>&nbsp;<select id="selectObsSource">
     <option>Select One</option>
 </select>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
             var url = DOKU_BASE + 'lib/exe/ajax.php';
 
             var dataValues = {
-                call: 'obs_cross_origin_json_request',
+                call: 'cross_origin_request',
                 contentType: 'application/json',
                 requestUrl: 'https://api.unfoldingword.org/obs/txt/1/obs-catalog.json'
             };

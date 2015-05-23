@@ -9,42 +9,28 @@
 
 // must be run within Dokuwiki
 if (!defined('DOKU_INC')) die();
-if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
+
+// $door43shared is a global instance, and can be used by any of the door43 plugins
+if (empty($door43shared)) {
+    $door43shared = plugin_load('helper', 'door43shared');
+}
+
+/* @var $door43shared helper_plugin_door43shared */
+$door43shared->loadAjaxHelper();
 
 class action_plugin_door43obs_PopulateOBS extends DokuWiki_Action_Plugin {
 
     /**
      * Registers a callback function for a given event
      *
-     * @param Doku_Event_Handler $controller DokuWiki's event controller object
+     * @param Doku_Event_Handler $controller the DokuWiki event controller object
      * @return void
      */
     public function register(Doku_Event_Handler $controller) {
-        $controller->register_hook('AJAX_CALL_UNKNOWN', 'BEFORE', $this, 'handle_ajax_call_unknown');
+        Door43_Ajax_Helper::register_handler($controller, 'create_obs_now', array($this, 'initialize_obs_content'));
     }
 
-    /**
-     * [Custom event handler which performs action]
-     *
-     * @param Doku_Event $event  event object by reference
-     * @param mixed      $param  [the parameters passed as fifth argument to register_hook() when this
-     *                           handler was registered]
-     * @return void
-     */
-    public function handle_ajax_call_unknown(Doku_Event &$event,
-        /** @noinspection PhpUnusedParameterInspection */ $param) {
-
-        if ($event->data !== 'create_obs_now') return;
-
-        //no other ajax call handlers needed
-        $event->stopPropagation();
-        $event->preventDefault();
-
-
-        $this->initialize_obs_content();
-    }
-
-    private function initialize_obs_content() {
+    public function initialize_obs_content() {
 
         global $conf;
         global $INPUT;
